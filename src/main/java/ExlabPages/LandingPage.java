@@ -2,8 +2,12 @@ package ExlabPages;
 
 import BasePage.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class LandingPage extends BasePage {
 
@@ -20,9 +24,26 @@ public class LandingPage extends BasePage {
     private final By mentorsNavigate = By.xpath("//div[@class='sc-eCYdqJ koNCEH' and text()='Менторы']");
     private final By startUpForHeader = By.partialLinkText("StartUp для");
     private final By startUpForNavigate = By.xpath("//div[@class='sc-gSAPjG iMnSkO']");
+    private final By connectBtnInHeader = By.xpath("//div[@class='sc-hAZoDl hrEelO']");
+    private final By nameOfTelegramBot = By.xpath("//span[@dir='auto']");
+    private final By aboutUsOnPage = By.xpath("//div[@class='sc-eCYdqJ koNCEH' and contains(text(),'О нас')]");
+    private final By textUnderAboutUsOnPage = By.xpath("//p[@class='sc-himrzO bgsrpw']");
+    private final By whyExlabOnPage = By.xpath("//div[@class='sc-cCsOjp bWNIcl']");
+    private final By textUnderWhyExlabOnPage = By.xpath("//ol[@class='sc-bZnhIo fYGDkJ']");
+    private final By joinBtnOnPage = By.xpath("//div[@class='sc-jdAMXn gLqyEH']/a[contains(text(),'Присоединиться')]");
+    private final By projectOnPage = By.xpath("//div[@data-scroll-target='#projects-title-wrapper']");
+    private final By exlabImgOnProject = By.xpath("//img[@alt='ExLab']");
+    private final By healthyLifeImgOnProject = By.xpath("//img[@alt='Healthy life ']");
+    private final By easyhelpImgOnProject = By.xpath("//img[@alt='Easyhelp ']");
+    private final By logosOnProject = By.xpath("//img[@class='sc-jOrMOR eGXkMj']");
+    private final By textOnExlabOnProject = By.xpath("//p[@class='sc-dPyBCJ elZmsx' and contains(text(),'Платформа поможет')]");
+    private final By textOnHealthyLifeOnProject = By.xpath("//p[@class='sc-dPyBCJ elZmsx' and contains(text(),'Приложение для')]");
+    private final By textOnEasyHelpOnProject = By.xpath("//p[@class='sc-dPyBCJ elZmsx' and contains(text(),'Платформа организует')]");
 
-    public LandingPage open(String url) {
-        loadPage(url);
+    private final By textsOnProjectBlock = By.xpath("//p[@class='sc-dPyBCJ elZmsx']");
+
+    public LandingPage open() {
+        loadPage("http://test.exlab.team/");
         return this;
     }
 
@@ -46,18 +67,116 @@ public class LandingPage extends BasePage {
         return this;
     }
 
-    public LandingPage aboutUsIsDisplayed() {
+    public LandingPage connectBtnInHeaderDisplayed() {
+        isDisplayed(connectBtnInHeader);
+        return this;
+    }
+
+    public LandingPage joinBtnOnPageDisplayed() {
+        moveTo(joinBtnOnPage);
+        isDisplayed(joinBtnOnPage);
+        return this;
+    }
+
+    public LandingPage cliclOnJoinBtnOnPage() {
+        moveTo(joinBtnOnPage);
+        wait.until(ExpectedConditions.visibilityOfAllElements(driver.findElement(joinBtnOnPage)));
+        click(joinBtnOnPage);
+        return this;
+    }
+
+    public LandingPage connectBtnInHeaderClick() {
+        click(connectBtnInHeader);
+        return this;
+    }
+
+    public LandingPage nameOfTelegramBotIsDisplayed() {
+        isDisplayed(nameOfTelegramBot);
+        return this;
+    }
+
+    public LandingPage aboutUsInHeaderIsDisplayed() {
         isDisplayed(aboutUsHeader);
         return this;
     }
 
-    public LandingPage checkTitle(String expectedTitle) {
+    public LandingPage textUnderAboutUsOnPageIsDisplayed() {
+        moveTo(textUnderAboutUsOnPage);
+        isDisplayed(textUnderAboutUsOnPage);
+        return this;
+    }
+
+    public LandingPage textUnderWhyExlabOnPageIsDisplayed() {
+        moveTo(textUnderWhyExlabOnPage);
+        isDisplayed(textUnderWhyExlabOnPage);
+        return this;
+    }
+
+    public LandingPage textWhyExlabOnPageIsDisplayed() {
+        moveTo(whyExlabOnPage);
+        isDisplayed(whyExlabOnPage);
+        return this;
+    }
+
+    public LandingPage aboutUsOnPageIsDisplayed() {
+        isDisplayed(aboutUsOnPage);
+        return this;
+    }
+
+    public LandingPage projectOnPageIsDisplayed() {
+        moveTo(projectOnPage);
+        isDisplayed(projectOnPage);
+        return this;
+    }
+
+    public LandingPage exlabLogoOnProjectIsDisplayed() {
+        moveTo(exlabImgOnProject);
+        isDisplayed(exlabImgOnProject);
+        return this;
+    }
+
+    public LandingPage healthyLifeLogoOnProjectIsDisplayed() {
+        moveTo(healthyLifeImgOnProject);
+        isDisplayed(healthyLifeImgOnProject);
+        return this;
+    }
+
+    public LandingPage easyhelpOnProjectLogoIsDisplayed() {
+        moveTo(easyhelpImgOnProject);
+        isDisplayed(easyhelpImgOnProject);
+        return this;
+    }
+
+    public LandingPage checkImgOnProjectBlockIsDisplayed() {
+        moveTo(easyhelpImgOnProject);
+        List<WebElement> list = driver.findElements(logosOnProject);
+        for (int i = 1; i < list.size(); i++) {
+            Assert.assertTrue(list.get(i).isDisplayed());
+        }
+        return this;
+    }
+
+    public LandingPage checkTextsOnProjectBlockIsDisplayed() {
+        moveTo(textOnEasyHelpOnProject);
+        List<WebElement> list = driver.findElements(textsOnProjectBlock);
+        for (int i = 1; i < list.size(); i++) {
+            Assert.assertTrue(list.get(i).isDisplayed());
+        }
+        return this;
+    }
+
+    public LandingPage checkTitle(String expectedTitle, String expectedUrl) {
         Assert.assertEquals(getTitle(), expectedTitle);
+        Assert.assertEquals(getUrl(), expectedUrl);
         return this;
     }
 
     private String getTitle() {
         return driver.getTitle();
+    }
+
+    private String getUrl() {
+        return driver.getCurrentUrl();
     }
 
     public LandingPage checkColorDark(String color) {
@@ -136,5 +255,18 @@ public class LandingPage extends BasePage {
         isDisplayed(startUpForNavigate);
         return this;
     }
+
+    public LandingPage navigateTo() {
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        driver.switchTo().window(tabs.get(1));
+        return this;
+    }
+
+    public LandingPage moveToAboutUsOnPage() {
+        moveTo(aboutUsOnPage);
+        return this;
+    }
+
+
 
 }

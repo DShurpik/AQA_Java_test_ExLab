@@ -14,9 +14,10 @@ public class SimpleDriver {
     public static void createDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(getChromeOptions());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+
     }
 
     public static WebDriver getDriver() {
@@ -29,7 +30,9 @@ public class SimpleDriver {
 
     protected static ChromeOptions getChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--window-size=1440,900");
+        //chromeOptions.addArguments("--window-size=1440,900");
+        chromeOptions.addArguments("--headless");
+        chromeOptions.addArguments("--window-size=1920,1080");
         return chromeOptions;
     }
 
