@@ -9,6 +9,7 @@ import org.testng.Assert;
 import java.time.Duration;
 
 import static Driver.SimpleDriver.getDriver;
+import static Utils.Config.WEB_DRIVER_WAIT;
 
 public abstract class BasePage {
 
@@ -18,7 +19,7 @@ public abstract class BasePage {
 
     public BasePage() {
         driver = getDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(WEB_DRIVER_WAIT));
         actions = new Actions(driver);
     }
 

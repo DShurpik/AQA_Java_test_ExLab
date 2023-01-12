@@ -204,6 +204,78 @@ public class test extends BaseTest {
                 .checkTextsOnProjectBlockIsDisplayed();
     }
 
+    @Test(description = "ExLab text is displayed at Projects module")
+    public void test24_1() {
+        new LandingPage()
+                .open()
+                .exlabTextOnProjectIsDisplayed();
+    }
+
+    @Test(description = "HealthyLife text is displayed at Projects module")
+    public void test24_2() {
+        new LandingPage()
+                .open()
+                .healthyLifeTextOnProjectIsDisplayed();
+    }
+
+    @Test(description = "Easyhelp text is displayed at Projects module")
+    public void test24_3() {
+        new LandingPage()
+                .open()
+                .easyhelpTextOnProjectIsDisplayed();
+    }
+
+    @Test(description = "Mentors header is displayed")
+    public void test25() {
+        new LandingPage()
+                .open()
+                .mentorsHeaderOnPageIsDisplayed();
+    }
+
+    @Test(description = "Mentors info opens by + click")
+    public void test26() {
+        new LandingPage()
+                .open()
+                .mentorsHeaderOnPageIsDisplayed()
+                .openMentorsInfo()
+                .infoAboutMentorsIsDisplayedAfterOpen();
+    }
+
+    @Test(description = "Mentors foto is displayed")
+    public void test27() {
+        new LandingPage()
+                .open()
+                .mentorsHeaderOnPageIsDisplayed()
+                .openMentorsInfoUdaev()
+                .photoMentorsUdaevIsDisplayed();
+    }
+
+    @Test(description = "Info about 4 mentors is displayed")
+    public void test28() {
+        new LandingPage()
+                .open()
+                .mentorsHeaderOnPageIsDisplayed()
+                .countMentorsName();
+    }
+
+    @Test(description = "Mentors info is closed by clicking -")
+    public void test29() {
+        new LandingPage()
+                .open()
+                .mentorsHeaderOnPageIsDisplayed()
+                .openMentorsInfoUdaev()
+                .photoMentorsUdaevIsDisplayed()
+                .closeMentorsInfoUdaev()
+                .photoUdaevIsNotDisplayed();
+    }
+
+    @Test(description = "Became mentor button is displayed")
+    public void test30() {
+        new LandingPage()
+                .open()
+                .becameMentorButtonIsDisplayed();
+    }
+
 
 
     @Test(enabled = false)
@@ -216,7 +288,7 @@ public class test extends BaseTest {
     }
 
     @Test(enabled = false)
-    public void test11() {
+    public void test11__() {
         WebDriver driver = getDriver();
         driver.get("http://exlab.team/");
         Assert.assertTrue(driver.findElement(By.xpath("//div[@class='sc-fIavCj fEzmxG']")).isEnabled());

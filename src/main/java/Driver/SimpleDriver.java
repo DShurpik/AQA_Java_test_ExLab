@@ -7,6 +7,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.time.Duration;
 
+import static Utils.Config.*;
+
 public class SimpleDriver {
 
     protected static WebDriver driver;
@@ -14,10 +16,10 @@ public class SimpleDriver {
     public static void createDriver() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver(getChromeOptions());
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(10));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITLY_WAIT));
+        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(SCRIPT_TIME_OUT));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(PAGE_LOAD_TIMEOUT));
+        driver.manage().window().setSize(DIMENSION);
     }
 
     public static WebDriver getDriver() {
@@ -30,9 +32,9 @@ public class SimpleDriver {
 
     protected static ChromeOptions getChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        //chromeOptions.addArguments("--window-size=1440,900");
+        if (ON_HEADLESS) {
         chromeOptions.addArguments("--headless");
-        chromeOptions.addArguments("--window-size=1920,1080");
+        }
         return chromeOptions;
     }
 

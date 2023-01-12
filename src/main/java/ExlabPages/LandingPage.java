@@ -39,8 +39,17 @@ public class LandingPage extends BasePage {
     private final By textOnExlabOnProject = By.xpath("//p[@class='sc-dPyBCJ elZmsx' and contains(text(),'Платформа поможет')]");
     private final By textOnHealthyLifeOnProject = By.xpath("//p[@class='sc-dPyBCJ elZmsx' and contains(text(),'Приложение для')]");
     private final By textOnEasyHelpOnProject = By.xpath("//p[@class='sc-dPyBCJ elZmsx' and contains(text(),'Платформа организует')]");
-
     private final By textsOnProjectBlock = By.xpath("//p[@class='sc-dPyBCJ elZmsx']");
+    private final By mentorsTitleOnPage = By.xpath("//div[@class='sc-eCYdqJ koNCEH' and text()='Менторы']");
+    private final By mentorsStanislavPlus = By.xpath("(//span[@class='sc-eKBdFk cFcyNJ'])[1]");
+    private final By mentorsStanislavInfo = By.xpath("(//ul[@class='sc-dsQDmV iZMcmm'])[1]");
+    private final By mentorstUdaevPlus = By.xpath("(//span[@class='sc-eKBdFk cFcyNJ'])[2]");
+    private final By mentorsUdaevMinus = By.xpath("//span[@class='sc-eKBdFk gGHWQo']");
+    private final By mentorsUdaevFoto = By.xpath("//img[@alt='Александр Юдаев']");
+    private final By nameMentors = By.xpath("//p[@class='sc-jOhDuK efeKUw']");
+    private final By mentorstSovrasPlus = By.xpath("(//span[@class='sc-eKBdFk cFcyNJ'])[3]");
+    private final By becomeMentor = By.xpath("//div[@class='sc-dwLEzm kIwrdA']");
+
 
     public LandingPage open() {
         loadPage("http://test.exlab.team/");
@@ -162,6 +171,81 @@ public class LandingPage extends BasePage {
         for (int i = 1; i < list.size(); i++) {
             Assert.assertTrue(list.get(i).isDisplayed());
         }
+        return this;
+    }
+
+    public LandingPage exlabTextOnProjectIsDisplayed() {
+        moveTo(textOnExlabOnProject);
+        isDisplayed(textOnExlabOnProject);
+        return this;
+    }
+
+    public LandingPage healthyLifeTextOnProjectIsDisplayed() {
+        moveTo(textOnHealthyLifeOnProject);
+        isDisplayed(textOnHealthyLifeOnProject);
+        return this;
+    }
+
+    public LandingPage easyhelpTextOnProjectIsDisplayed() {
+        moveTo(textOnEasyHelpOnProject);
+        isDisplayed(textOnEasyHelpOnProject);
+        return this;
+    }
+
+    public LandingPage mentorsHeaderOnPageIsDisplayed() {
+        moveTo(mentorsTitleOnPage);
+        isDisplayed(mentorsTitleOnPage);
+        return this;
+    }
+
+    public LandingPage openMentorsInfo() {
+        moveTo(mentorsStanislavPlus);
+        click(mentorsStanislavPlus);
+        return this;
+    }
+
+    public LandingPage infoAboutMentorsIsDisplayedAfterOpen() {
+        moveTo(mentorstUdaevPlus);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsStanislavInfo)));
+        isDisplayed(mentorsStanislavInfo);
+        return this;
+    }
+
+    public LandingPage openMentorsInfoUdaev() {
+        moveTo(mentorstUdaevPlus);
+        click(mentorstUdaevPlus);
+        return this;
+    }
+
+    public LandingPage photoMentorsUdaevIsDisplayed() {
+        moveTo(mentorstSovrasPlus);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsUdaevFoto)));
+        isDisplayed(mentorsUdaevFoto);
+        return this;
+    }
+
+    public LandingPage countMentorsName() {
+        moveTo(mentorstUdaevPlus);
+        List<WebElement> list = driver.findElements(nameMentors);
+        Assert.assertEquals(list.size(), 4);
+        return this;
+    }
+    public LandingPage closeMentorsInfoUdaev() {
+        click(mentorsUdaevMinus);
+        return this;
+    }
+
+    public LandingPage photoUdaevIsNotDisplayed() {
+        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(mentorsUdaevFoto)));
+        Assert.assertFalse(driver.findElement(mentorsUdaevFoto).isDisplayed());
+        return this;
+    }
+
+    public LandingPage becameMentorButtonIsDisplayed() {
+        moveTo(mentorsNavigate);
+        moveTo(becomeMentor);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(becomeMentor)));
+        isDisplayed(becomeMentor);
         return this;
     }
 
