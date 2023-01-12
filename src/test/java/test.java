@@ -23,65 +23,99 @@ public class test extends BaseTest {
                 .checkTitle("ExLab Landing", "http://test.exlab.team/");
     }
 
-    @Test(description = "Default open dark themes")
+    @Test(description = "Page opens with dark background")
     public void test2_1() {
         new LandingPage()
                 .open()
                 .sunElementIsDisplayed();
     }
 
-    @Test(description = "Check background color")
+    @Test(description = "Page opens with dark background, check background color")
     public void test2_2() {
         new LandingPage()
                 .open()
                 .checkColorDark("rgba(17, 17, 17, 1)");
     }
 
-    @Test(description = "Logo ExLab is displayed")
+    @Test(description = "ExLab logo is displayed")
     public void test3() {
         new LandingPage()
                 .open()
-                .titleDarkIsDisplayed();
+                .exlabLogoIsDisplayed();
     }
 
-    @Test(description = "About us is displayed and navigate to about us title")
-    public void test4_5() {
+    @Test(description = "Menu item About us is displayed")
+    public void test4() {
+        new LandingPage()
+                .open()
+                .aboutUsInHeaderIsDisplayed();
+    }
+
+    @Test(description = "About us menu link opens About us module")
+    public void test5() {
         new LandingPage()
                 .open()
                 .aboutUsInHeaderIsDisplayed()
                 .clickOnAboutUs()
-                .aboutUsNavigateTo();
+                .aboutUsOnPageIsDisplayed();
     }
 
-    @Test(description = "Projects us is displayed and navigate to projects title")
-    public void test6_7() {
+    @Test(description = "Menu item Projects is displayed")
+    public void test6() {
+        new LandingPage()
+                .open()
+                .projectHeaderIsDisplayed();
+    }
+
+    @Test(description = "Menu item Projects opens Projects module")
+    public void test7() {
         new LandingPage()
                 .open()
                 .projectHeaderIsDisplayed()
                 .clickProjectsHeader()
-                .projectNavigateTo();
+                .projectOnPageIsDisplayed();
     }
 
-    @Test(description = "Mentors is displayed and check navigate to mentors")
-    public void test8_9() {
+    @Test(description = "Menu item Mentors is displayed")
+    public void test8() {
+        new LandingPage()
+                .open()
+                .mentorsHeaderIsDisplayed();
+    }
+
+    @Test(description = "Menu item Mentors opens Mentors module")
+    public void test9() {
         new LandingPage()
                 .open()
                 .mentorsHeaderIsDisplayed()
                 .clickMentorsHeader()
-                .mentorsNavigateTo();
+                .mentorsOnPageIsDisplayed();
     }
 
-    @Test(description = "StartUp for is displayed and check navigate to StartUp")
-    public void test10_11() {
+    @Test(description = "Menu item StartUp is displayed")
+    public void test10() {
         new LandingPage()
                 .open()
-                .startUpForHeaderIsDisplayed()
-                .clickStartUpForHeader()
-                .startUpForNavigateTo();
+                .startUpForHeaderIsDisplayed();
     }
 
-    @Test(description = "Check Sun Icon and check white themes after click")
-    public void test12_13_V1() {
+    @Test(description = "Menu item StartUp opens Start up module")
+    public void test11() {
+        new LandingPage()
+                .open()
+                .clickStartUpForHeader()
+                .startUpForOnPageIsDisplayed();
+    }
+
+    @Test(description = "Button Sun Icon is displayed")
+    public void test12_V1() {
+        new LandingPage()
+                .open()
+                .sunElementIsDisplayed();
+    }
+
+    @Test(description = "Button Sun Icon changes background color")
+    public void test13_V1() {
         new LandingPage()
                 .open()
                 .sunElementIsDisplayed()
@@ -89,8 +123,8 @@ public class test extends BaseTest {
                 .moonElementIsDisplayed();
     }
 
-    @Test(description = "Check Sun Icon and check white themes after click")
-    public void test12_13_V2() {
+    @Test(description = "Button Sun Icon changes background color")
+    public void test13_V2() {
         new LandingPage()
                 .open()
                 .sunElementIsDisplayed()
@@ -99,23 +133,23 @@ public class test extends BaseTest {
                 .checkColorWhite("rgba(255, 255, 255, 1)");
     }
 
-    @Test(description = "Check connect button is displayed")
+    @Test(description = "Join button is displayed")
     public void test14() {
         new LandingPage()
                 .open()
                 .connectBtnInHeaderDisplayed();
     }
 
-    @Test(description = "Check, if click connect button is invite in telegram")
+    @Test(description = "Join button opens telegram inviting page")
     public void test15() {
         new LandingPage()
                 .open()
                 .connectBtnInHeaderClick()
                 .navigateTo()
-                .nameOfTelegramBotIsDisplayed();
+                .telegramUrlIsExpected();
     }
 
-    @Test(description = "Check about us is displayed on page")
+    @Test(description = "About Us header is displayed")
     public void test16() {
         new LandingPage()
                 .open()
@@ -123,78 +157,77 @@ public class test extends BaseTest {
                 .aboutUsOnPageIsDisplayed();
     }
 
-    @Test(description = "Text under about us on page is displayed")
+    @Test(description = "About Us text is displayed")
     public void test17() {
         new LandingPage()
                 .open()
                 .moveToAboutUsOnPage()
-                .aboutUsOnPageIsDisplayed()
                 .textUnderAboutUsOnPageIsDisplayed();
     }
 
-    @Test(description = "Check Why ExLab is displayed")
+    @Test(description = "Why ExLab subheader is displayed")
     public void test18() {
         new LandingPage()
                 .open()
                 .textWhyExlabOnPageIsDisplayed();
     }
 
-    @Test(description = "Check text under Why Exlab is displayed")
+    @Test(description = "Why ExLab text is displayed")
     public void test19() {
         new LandingPage()
                 .open()
                 .textUnderWhyExlabOnPageIsDisplayed();
     }
 
-    @Test(description = "Check button Join is displayed")
+    @Test(description = "Join button is displayed")
     public void test20() {
         new LandingPage()
                 .open()
                 .joinBtnOnPageDisplayed();
     }
 
-    @Test(description = "Check if click on join button open telegram bot")
+    @Test(description = "Join button opens telegram inviting page")
     public void test21() {
         new LandingPage()
                 .open()
                 .cliclOnJoinBtnOnPage()
                 .navigateTo()
-                .nameOfTelegramBotIsDisplayed();
+                .telegramUrlIsExpected();
     }
 
-    @Test(description = "Check project on page is displayed")
+    @Test(description = "Projects header is displayed")
     public void test22() {
         new LandingPage()
                 .open()
                 .projectOnPageIsDisplayed();
     }
 
-    @Test(description = "Check logos is displayed on project block")
+    @Test(description = "ExLab logo is displayed at Projects module")
     public void test23_1() {
         new LandingPage()
                 .open()
-                .exlabLogoOnProjectIsDisplayed();
+                .exlabLogoOnProjectModuleIsDisplayed();
     }
 
-    @Test(description = "Check logos is displayed on project block")
+    @Test(description = "HealthyLife logo is displayed at Projects module")
     public void test23_2() {
         new LandingPage()
                 .open()
-                .healthyLifeLogoOnProjectIsDisplayed();
+                .healthyLifeLogoOnProjectModuleIsDisplayed();
     }
 
-    @Test(description = "Check logos is displayed on project block")
+    @Test(description = "Easyhelp logo is displayed at Projects module")
     public void test23_3() {
         new LandingPage()
                 .open()
-                .easyhelpOnProjectLogoIsDisplayed();
+                .easyhelpLogoOnProjectModuleIsDisplayed();
     }
 
     @Test(description = "Check all logos on project block")
     public void test23() {
         new LandingPage()
                 .open()
-                .checkImgOnProjectBlockIsDisplayed();
+                .checkLogosOnProjectModuleIsDisplayed();
     }
 
     @Test(description = "Check all text on project block")
@@ -236,11 +269,10 @@ public class test extends BaseTest {
     public void test26() {
         new LandingPage()
                 .open()
-                .mentorsHeaderOnPageIsDisplayed()
                 .openMentorsInfo()
                 .infoAboutMentorsIsDisplayedAfterOpen();
     }
-
+    /***********************REFACTORING***************************************/
     @Test(description = "Mentors foto is displayed")
     public void test27() {
         new LandingPage()
@@ -279,7 +311,7 @@ public class test extends BaseTest {
 
 
     @Test(enabled = false)
-    public void test10() {
+    public void test110() {
         WebDriver driver = getDriver();
         driver.get("http://test.exlab.team/");
         Actions action = new Actions(driver);
@@ -295,7 +327,7 @@ public class test extends BaseTest {
     }
 
     @Test(enabled = false)
-    public void test8() {
+    public void test88() {
         WebDriver driver = getDriver();
         driver.get("http://exlab.team/");
         Actions action = new Actions(driver);
@@ -304,7 +336,7 @@ public class test extends BaseTest {
     }
 
     @Test(enabled = false)
-    public void test9() throws InterruptedException {
+    public void test99() throws InterruptedException {
         WebDriver driver = getDriver();
         driver.get("http://exlab.team/");
         Actions action = new Actions(driver);
