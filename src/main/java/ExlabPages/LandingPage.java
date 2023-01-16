@@ -1,13 +1,11 @@
 package ExlabPages;
 
 import BasePage.BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class LandingPage extends BasePage {
 
@@ -19,10 +17,9 @@ public class LandingPage extends BasePage {
     private final By aboutUsHeader = By.partialLinkText("О нас");
     private final By projectstHeader = By.partialLinkText("Проекты");
     private final By mentorsHeader = By.partialLinkText("Менторы");
-    private final By startUpForHeader = By.partialLinkText("StartUp для");
+    private final By startUpForHeader = By.xpath("//a[@class='sc-evZas hJsxZw' and text()='StartUp для']");
     private final By startUpOnPage = By.xpath("//div[text()='StartUp для']");
     private final By connectBtnInHeader = By.xpath("//div[@class='sc-hAZoDl hrEelO']");
-    private final By nameOfTelegramBot = By.xpath("//span[@dir='auto']");
     private final By aboutUsOnPage = By.xpath("//div[text()='О нас']");
     private final By textUnderAboutUsOnPage = By.xpath("//p[@class='sc-himrzO bgsrpw']");
     private final By whyExlabOnPage = By.xpath("//div[text()='Почему ExLab?']");
@@ -53,35 +50,36 @@ public class LandingPage extends BasePage {
         return this;
     }
 
-    public LandingPage sunElementIsDisplayed() {
-        isDisplayed(sunElement);
-        return this;
+    public Boolean sunElementIsDisplayed() {
+        return driver.findElement(sunElement).isDisplayed();
     }
 
     public LandingPage clickOnSunElement() {
         click(sunElement);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(moonElement)));
         return this;
     }
 
-    public LandingPage moonElementIsDisplayed() {
-        isDisplayed(moonElement);
-        return this;
+    public Boolean moonElementIsDisplayed() {
+        return driver.findElement(moonElement).isDisplayed();
     }
 
-    public LandingPage exlabLogoIsDisplayed() {
-        isDisplayed(exlabLogoDark);
-        return this;
+    public Boolean exlabLogoIsDisplayed() {
+        return driver.findElement(exlabLogoDark).isDisplayed();
     }
 
-    public LandingPage connectBtnInHeaderDisplayed() {
-        isDisplayed(connectBtnInHeader);
-        return this;
+    public Boolean connectBtnInHeaderDisplayed() {
+        return driver.findElement(connectBtnInHeader).isDisplayed();
     }
 
-    public LandingPage joinBtnOnPageDisplayed() {
+    public LandingPage moveToJoinBtnOnPage() {
         moveTo(joinBtnOnPage);
-        isDisplayed(joinBtnOnPage);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(joinBtnOnPage)));
         return this;
+    }
+
+    public Boolean joinBtnOnPageDisplayed() {
+        return driver.findElement(joinBtnOnPage).isDisplayed();
     }
 
     public LandingPage cliclOnJoinBtnOnPage() {
@@ -96,182 +94,202 @@ public class LandingPage extends BasePage {
         return this;
     }
 
-    public LandingPage telegramUrlIsExpected() {
-        isDisplayed(nameOfTelegramBot);
-        Assert.assertEquals(driver.getCurrentUrl(), "https://t.me/ExLab_registration_bot");
-        return this;
+    public String telegramUrlIsExpected() {
+        return driver.getCurrentUrl();
     }
 
-    public LandingPage aboutUsInHeaderIsDisplayed() {
-        isDisplayed(aboutUsHeader);
-        wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(aboutUsHeader)));
-        return this;
+    public Boolean aboutUsInHeaderIsDisplayed() {
+        return driver.findElement(aboutUsHeader).isDisplayed();
     }
 
-    public LandingPage textUnderAboutUsOnPageIsDisplayed() {
-        moveTo(textUnderAboutUsOnPage);
-        isDisplayed(textUnderAboutUsOnPage);
-        return this;
+    public Boolean aboutUsInHeaderIsClicable() {
+        return driver.findElement(aboutUsHeader).isEnabled();
     }
 
-    public LandingPage textUnderWhyExlabOnPageIsDisplayed() {
+    public Boolean aboutUsInHeaderOnPageIsDisplayed() {
+        return driver.findElement(aboutUsOnPage).isDisplayed();
+    }
+
+    public Boolean textUnderAboutUsOnPageIsDisplayed() {
+        return driver.findElement(textUnderAboutUsOnPage).isDisplayed();
+    }
+
+    public Boolean textUnderWhyExlabOnPageIsDisplayed() {
+        return driver.findElement(textUnderWhyExlabOnPage).isDisplayed();
+    }
+
+    public LandingPage moveTotextUnderWhyExlabOnPage() {
         moveTo(textUnderWhyExlabOnPage);
-        isDisplayed(textUnderWhyExlabOnPage);
         return this;
     }
 
-    public LandingPage textWhyExlabOnPageIsDisplayed() {
+    public LandingPage moveToWhyExlabOnPage() {
         moveTo(whyExlabOnPage);
-        isDisplayed(whyExlabOnPage);
         return this;
     }
 
-    public LandingPage projectOnPageIsDisplayed() {
+    public Boolean subheaderWhyExlabOnPageIsDisplayed() {
+        return driver.findElement(whyExlabOnPage).isDisplayed();
+    }
+
+    public LandingPage moveToprojectOnPage() {
         moveTo(projectOnPage);
-        isDisplayed(projectOnPage);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(projectOnPage)));
         return this;
     }
 
-    public LandingPage exlabLogoOnProjectModuleIsDisplayed() {
+    public Boolean projectOnPageIsDisplayed() {
+        return driver.findElement(projectOnPage).isDisplayed();
+    }
+
+    public LandingPage moveToExlabLogoOnProjectModule() {
         moveTo(exlabImgOnProject);
-        isDisplayed(exlabImgOnProject);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(exlabImgOnProject)));
         return this;
     }
 
-    public LandingPage healthyLifeLogoOnProjectModuleIsDisplayed() {
+    public boolean exlabLogoOnProjectModuleIsDisplayed() {
+        return driver.findElement(exlabImgOnProject).isDisplayed();
+    }
+
+    public LandingPage moveTohealthyLifeLogoOnProjectModule() {
         moveTo(healthyLifeImgOnProject);
-        isDisplayed(healthyLifeImgOnProject);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(healthyLifeImgOnProject)));
         return this;
     }
 
-    public LandingPage easyhelpLogoOnProjectModuleIsDisplayed() {
+    public boolean healthyLifeLogoOnProjectModuleIsDisplayed() {
+        return driver.findElement(healthyLifeImgOnProject).isDisplayed();
+    }
+
+    public LandingPage moveToEasyhelpLogoOnProjectModule() {
         moveTo(easyhelpImgOnProject);
-        isDisplayed(easyhelpImgOnProject);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(easyhelpImgOnProject)));
         return this;
     }
 
-    public LandingPage checkLogosOnProjectModuleIsDisplayed() {
-        moveTo(easyhelpImgOnProject);
-        List<WebElement> list = driver.findElements(logosOnProject);
-        for (int i = 1; i < list.size(); i++) {
-            Assert.assertTrue(list.get(i).isDisplayed());
-        }
-        return this;
+    public boolean easyhelpLogoOnProjectModuleIsDisplayed() {
+        return driver.findElement(easyhelpImgOnProject).isDisplayed();
     }
 
-    public LandingPage checkTextsOnProjectBlockIsDisplayed() {
-        moveTo(textOnEasyHelpOnProject);
-        List<WebElement> list = driver.findElements(textsOnProjectBlock);
-        for (int i = 1; i < list.size(); i++) {
-            Assert.assertTrue(list.get(i).isDisplayed());
-        }
-        return this;
+    public boolean exlabTextOnProjectIsDisplayed() {
+        return driver.findElement(textOnExlabOnProject).isDisplayed();
     }
 
-    public LandingPage exlabTextOnProjectIsDisplayed() {
+    public LandingPage moveToExlabTextOnProject() {
         moveTo(textOnExlabOnProject);
-        isDisplayed(textOnExlabOnProject);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textOnExlabOnProject)));
         return this;
     }
 
-    public LandingPage healthyLifeTextOnProjectIsDisplayed() {
+    public LandingPage moveToHealthyLifeTextOnProject() {
         moveTo(textOnHealthyLifeOnProject);
-        isDisplayed(textOnHealthyLifeOnProject);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textOnHealthyLifeOnProject)));
         return this;
     }
 
-    public LandingPage easyhelpTextOnProjectIsDisplayed() {
+    public boolean healthyLifeTextOnProjectIsDisplayed() {
+        return driver.findElement(textOnHealthyLifeOnProject).isDisplayed();
+    }
+
+    public LandingPage moveToEasyhelpTextOnProject() {
         moveTo(textOnEasyHelpOnProject);
-        isDisplayed(textOnEasyHelpOnProject);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textOnEasyHelpOnProject)));
         return this;
     }
 
-    public LandingPage mentorsHeaderOnPageIsDisplayed() {
+    public boolean easyhelpTextOnProjectIsDisplayed() {
+        return driver.findElement(textOnEasyHelpOnProject).isDisplayed();
+    }
+
+    public LandingPage moveToMentorsHeaderOnPage() {
         moveTo(mentorsOnPage);
-        isDisplayed(mentorsOnPage);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsOnPage)));
         return this;
     }
 
-    public LandingPage openMentorsInfo() {
+    public boolean mentorsHeaderOnPageIsDisplayed() {
+        return driver.findElement(mentorsOnPage).isDisplayed();
+    }
+
+    public LandingPage moveToMentorsHarlapInfo() {
         moveTo(mentorsHarlapPlus);
-        click(mentorsHarlapPlus);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsHarlapPlus)));
         return this;
     }
 
-    public LandingPage infoAboutMentorsIsDisplayedAfterOpen() {
-        moveTo(mentorstUdaevPlus);
+    public LandingPage openMentorsHarlapInfo() {
+        click(mentorsHarlapPlus);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsHarlapInfo)));
-        isDisplayed(mentorsHarlapInfo);
         return this;
+    }
+
+    public boolean infoAboutMentorsHarlapIsDisplayedAfterOpen() {
+        return driver.findElement(mentorsHarlapInfo).isDisplayed();
     }
 
     public LandingPage openMentorsInfoUdaev() {
         moveTo(mentorstUdaevPlus);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorstUdaevPlus)));
         click(mentorstUdaevPlus);
         return this;
     }
 
-    public LandingPage photoMentorsUdaevIsDisplayed() {
-        moveTo(mentorstSovrasPlus);
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsUdaevFoto)));
-        isDisplayed(mentorsUdaevFoto);
-        return this;
+    public boolean photoMentorsUdaevIsDisplayed() {
+        return driver.findElement(mentorsUdaevFoto).isDisplayed();
     }
 
-    public LandingPage countMentorsName() {
+    public int countMentorsName() {
         moveTo(mentorstUdaevPlus);
         List<WebElement> list = driver.findElements(nameMentors);
-        Assert.assertEquals(list.size(), 4);
-        return this;
+        return list.size();
     }
     public LandingPage closeMentorsInfoUdaev() {
         click(mentorsUdaevMinus);
-        return this;
-    }
-
-    public LandingPage photoUdaevIsNotDisplayed() {
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(mentorsUdaevFoto)));
-        Assert.assertFalse(driver.findElement(mentorsUdaevFoto).isDisplayed());
         return this;
     }
 
-    public LandingPage becameMentorButtonIsDisplayed() {
+    public boolean photoUdaevIsNotDisplayed() {
+        return driver.findElement(mentorsUdaevFoto).isDisplayed();
+    }
+
+    public LandingPage moveToBecameMentorButton() {
         moveTo(mentorsOnPage);
         moveTo(becomeMentor);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(becomeMentor)));
-        isDisplayed(becomeMentor);
         return this;
     }
 
-    public LandingPage checkTitle(String expectedTitle, String expectedUrl) {
-        Assert.assertEquals(getTitle(), expectedTitle);
-        Assert.assertEquals(getUrl(), expectedUrl);
-        return this;
+    public boolean becomeMentorIsDisplayed() {
+        return driver.findElement(becomeMentor).isDisplayed();
     }
 
-    private String getTitle() {
+    public String getTitle() {
         return driver.getTitle();
     }
 
-    private String getUrl() {
+    public String getUrl() {
         return driver.getCurrentUrl();
     }
 
-    public LandingPage checkColorDark(String color) {
-        Assert.assertEquals(getColorDark(), color);
-        return this;
+    public Boolean sunElementIsDisplayedBoolean() {
+        return driver.findElement(sunElement).isDisplayed();
     }
 
-    private String getColorDark() {
+    public String sunElementGetClassName() {
+        return driver.findElement(sunElement).getAttribute("class");
+    }
+
+    public String moonElementGetClassName() {
+        return driver.findElement(moonElement).getAttribute("class");
+    }
+
+    public String getColor() {
         return driver.findElement(pageDark).getCssValue("background-color");
     }
 
-    public LandingPage checkColorWhite(String color) {
-        Assert.assertEquals(getColorWhite(), color);
-        return this;
-    }
-
-    private String getColorWhite() {
+    public String getColorPageWhite() {
         return driver.findElement(pageWhite).getCssValue("background-color");
     }
 
@@ -280,25 +298,34 @@ public class LandingPage extends BasePage {
         return this;
     }
 
-    public LandingPage aboutUsOnPageIsDisplayed() {
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(aboutUsOnPage)));
-        isDisplayed(aboutUsOnPage);
-        return this;
+    public Boolean aboutUsOnPageIsDisplayed() {
+        return driver.findElement(aboutUsOnPage).isDisplayed();
     }
 
-    public LandingPage projectHeaderIsDisplayed() {
-        isDisplayed(projectstHeader);
-        return this;
+    public Boolean projectHeaderIsDisplayed() {
+        return driver.findElement(projectstHeader).isDisplayed();
+    }
+
+    public Boolean projectHeaderIsClicable() {
+        return driver.findElement(projectstHeader).isEnabled();
     }
 
     public LandingPage clickProjectsHeader() {
         click(projectstHeader);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(projectOnPage)));
         return this;
     }
 
-    public LandingPage mentorsHeaderIsDisplayed() {
-        isDisplayed(mentorsHeader);
-        return this;
+    public Boolean projectHeaderOnPageIsDisplayed() {
+        return driver.findElement(projectOnPage).isDisplayed();
+    }
+
+    public Boolean mentorsHeaderIsDisplayed() {
+        return driver.findElement(mentorsHeader).isDisplayed();
+    }
+
+    public Boolean mentorsHeaderIsClickable() {
+        return driver.findElement(mentorsHeader).isEnabled();
     }
 
     public LandingPage clickMentorsHeader() {
@@ -306,26 +333,28 @@ public class LandingPage extends BasePage {
         return this;
     }
 
-    public LandingPage mentorsOnPageIsDisplayed() {
+    public Boolean mentorsOnPageIsDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsOnPage)));
-        isDisplayed(mentorsOnPage);
-        return this;
+        return driver.findElement(mentorsOnPage).isDisplayed();
     }
 
-    public LandingPage startUpForHeaderIsDisplayed() {
-        isDisplayed(startUpForHeader);
-        return this;
+    public Boolean startUpForHeaderIsDisplayed() {
+        return driver.findElement(startUpForHeader).isDisplayed();
+    }
+
+    public Boolean startUpForHeaderIsClickable() {
+        return driver.findElement(startUpForHeader).isEnabled();
     }
 
     public LandingPage clickStartUpForHeader() {
         click(startUpForHeader);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(startUpOnPage)));
         return this;
     }
 
-    public LandingPage startUpForOnPageIsDisplayed() {
+    public Boolean startUpForOnPageIsDisplayed() {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(startUpOnPage)));
-        isDisplayed(startUpOnPage);
-        return this;
+        return driver.findElement(startUpOnPage).isDisplayed();
     }
 
     public LandingPage navigateTo() {
@@ -336,6 +365,13 @@ public class LandingPage extends BasePage {
 
     public LandingPage moveToAboutUsOnPage() {
         moveTo(aboutUsOnPage);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(aboutUsOnPage)));
+        return this;
+    }
+
+    public LandingPage moveToAboutUsText() {
+        moveTo(textUnderAboutUsOnPage);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textUnderAboutUsOnPage)));
         return this;
     }
 
