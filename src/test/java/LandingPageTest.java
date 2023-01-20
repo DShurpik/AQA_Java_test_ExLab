@@ -92,7 +92,7 @@ public class LandingPageTest extends BaseTest {
         Assert.assertTrue(landingPage.startUpForHeaderIsDisplayed());
     }
 
-    @Test(description = "Menu item StartUp opens Start up module", priority = 2)
+    @Test(description = "Menu item StartUp opens Start up module")
     public void test11() {
         landingPage.open();
         Assert.assertTrue(landingPage.startUpForHeaderIsClickable());
@@ -128,7 +128,6 @@ public class LandingPageTest extends BaseTest {
         Assert.assertEquals(landingPage.sunElementGetClassName(), "sc-fnykZs fEkGUM");
         landingPage.clickOnSunElement();
         Assert.assertEquals(landingPage.moonElementGetClassName(), "sc-fnykZs lfkjFc");
-
     }
 
     @Test(description = "Join button is displayed")
@@ -250,7 +249,8 @@ public class LandingPageTest extends BaseTest {
                 .moveToMentorsHarlapInfo();
         Assert.assertTrue(landingPage.mentorsHeaderOnPageIsDisplayed());
         landingPage
-                .openMentorsHarlapInfo();
+                .openMentorsHarlapInfo()
+                .moveToMentorsHarlapInfo1();
         Assert.assertTrue(landingPage.infoAboutMentorsHarlapIsDisplayedAfterOpen());
     }
 

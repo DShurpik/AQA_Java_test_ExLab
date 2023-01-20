@@ -16,9 +16,9 @@ public class LandingPage extends BasePage {
     private final By exlabLogoDark = By.xpath("//div[@id='logo_mobile'][1]");
     private final By aboutUsHeader = By.partialLinkText("О нас");
     private final By projectstHeader = By.partialLinkText("Проекты");
-    private final By mentorsHeader = By.partialLinkText("Менторы");
+    private final By mentorsHeader = By.xpath("//a[@class='sc-evZas hJsxZw' and text()='Менторы']");
     private final By startUpForHeader = By.xpath("//a[@class='sc-evZas hJsxZw' and text()='StartUp для']");
-    private final By startUpOnPage = By.xpath("//div[text()='StartUp для']");
+    private final By startUpOnPage = By.xpath("//div[@class='sc-eCYdqJ koNCEH is-inview' and text()='StartUp для']");
     private final By connectBtnInHeader = By.xpath("//div[@class='sc-hAZoDl hrEelO']");
     private final By aboutUsOnPage = By.xpath("//div[text()='О нас']");
     private final By textUnderAboutUsOnPage = By.xpath("//p[@class='sc-himrzO bgsrpw']");
@@ -36,13 +36,14 @@ public class LandingPage extends BasePage {
     private final By textsOnProjectBlock = By.xpath("//p[@class='sc-dPyBCJ elZmsx']");
     private final By mentorsOnPage = By.xpath("//div[text()='Менторы']");
     private final By mentorsHarlapPlus = By.xpath("(//span[@class='sc-eKBdFk cFcyNJ'])[1]");
-    private final By mentorsHarlapInfo = By.xpath("(//ul[@class='sc-dsQDmV iZMcmm'])[1]");
+    private final By mentorsHarlapInfo = By.xpath("//*[@id='mentors']/div[2]/div[1]/div[1]/div[1]/span");
     private final By mentorstUdaevPlus = By.xpath("(//span[@class='sc-eKBdFk cFcyNJ'])[2]");
     private final By mentorsUdaevMinus = By.xpath("//span[@class='sc-eKBdFk gGHWQo']");
     private final By mentorsUdaevFoto = By.xpath("//img[@alt='Александр Юдаев']");
     private final By nameMentors = By.xpath("//p[@class='sc-jOhDuK efeKUw']");
     private final By mentorstSovrasPlus = By.xpath("(//span[@class='sc-eKBdFk cFcyNJ'])[3]");
-    private final By becomeMentor = By.xpath("//div[@class='sc-dwLEzm kIwrdA']");
+    private final By becomeMentor = By.xpath("//a[@class='sc-dkzDqf dEddqP' and text()='Стать ментором']");
+    private final By murashkoMentor = By.xpath("//p[text()='Александра Мурашко']");
 
 
     public LandingPage open() {
@@ -219,7 +220,13 @@ public class LandingPage extends BasePage {
     }
 
     public LandingPage openMentorsHarlapInfo() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsHarlapInfo)));
         click(mentorsHarlapPlus);
+        return this;
+    }
+
+    public LandingPage moveToMentorsHarlapInfo1() {
+        moveTo(mentorsHarlapInfo);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(mentorsHarlapInfo)));
         return this;
     }
@@ -255,7 +262,7 @@ public class LandingPage extends BasePage {
     }
 
     public LandingPage moveToBecameMentorButton() {
-        moveTo(mentorsOnPage);
+        moveTo(murashkoMentor);
         moveTo(becomeMentor);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(becomeMentor)));
         return this;

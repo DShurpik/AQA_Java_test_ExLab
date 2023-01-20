@@ -27,15 +27,17 @@ public abstract class BasePage {
     }
 
     protected void isDisplayed(By locator) {
-        System.out.println("Element " + driver.findElement(locator).toString() + " is displayed");
+        System.out.println("Element " + locator.toString() + " is displayed");
         Assert.assertTrue(driver.findElement(locator).isDisplayed());
     }
 
     protected void click(By locator) {
+        System.out.println("Element " + locator.toString() + " click");
         driver.findElement(locator).click();
     }
 
     protected void moveTo(By locator) {
+        System.out.println("Scroll to element " + locator.toString());
         actions.scrollToElement(driver.findElement(locator)).build().perform();
     }
 
