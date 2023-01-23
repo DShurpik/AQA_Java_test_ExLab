@@ -19,6 +19,7 @@ public class LandingPage extends BasePage {
     private final By mentorsHeader = By.xpath("//a[@class='sc-evZas hJsxZw' and text()='Менторы']");
     private final By startUpForHeader = By.xpath("//a[@class='sc-evZas hJsxZw' and text()='StartUp для']");
     private final By startUpOnPage = By.xpath("//div[@class='sc-eCYdqJ koNCEH is-inview' and text()='StartUp для']");
+    private final By startUpOnPage1 = By.xpath("//h2[@class='sc-eKszNL btnxIe']");
     private final By connectBtnInHeader = By.xpath("//div[@class='sc-hAZoDl hrEelO']");
     private final By aboutUsOnPage = By.xpath("//div[text()='О нас']");
     private final By textUnderAboutUsOnPage = By.xpath("//p[@class='sc-himrzO bgsrpw']");
@@ -355,13 +356,13 @@ public class LandingPage extends BasePage {
 
     public LandingPage clickStartUpForHeader() {
         click(startUpForHeader);
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(startUpOnPage)));
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(startUpOnPage1)));
         return this;
     }
 
     public Boolean startUpForOnPageIsDisplayed() {
-        wait.until(ExpectedConditions.visibilityOf(driver.findElement(startUpOnPage)));
-        return driver.findElement(startUpOnPage).isDisplayed();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(startUpOnPage1)));
+        return driver.findElement(startUpOnPage1).isDisplayed();
     }
 
     public LandingPage navigateTo() {

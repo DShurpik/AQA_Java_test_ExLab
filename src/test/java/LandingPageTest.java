@@ -3,6 +3,9 @@ import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static Driver.SimpleDriver.*;
 
 
@@ -78,7 +81,7 @@ public class LandingPageTest extends BaseTest {
         Assert.assertTrue(landingPage.mentorsHeaderIsDisplayed());
     }
 
-    @Test(description = "Menu item Mentors is displayed")
+    @Test(description = "Menu item Mentors is displayed", invocationCount = 30)
     public void test9() {
         landingPage.open();
         Assert.assertTrue(landingPage.mentorsHeaderIsClickable());
@@ -92,7 +95,7 @@ public class LandingPageTest extends BaseTest {
         Assert.assertTrue(landingPage.startUpForHeaderIsDisplayed());
     }
 
-    @Test(description = "Menu item StartUp opens Start up module")
+    @Test(description = "Menu item StartUp opens Start up module", invocationCount = 10)
     public void test11() {
         landingPage.open();
         Assert.assertTrue(landingPage.startUpForHeaderIsClickable());
@@ -236,7 +239,7 @@ public class LandingPageTest extends BaseTest {
         Assert.assertTrue(landingPage.easyhelpTextOnProjectIsDisplayed());
     }
 
-    @Test(description = "Mentors header is displayed")
+    @Test(description = "Mentors header is displayed", invocationCount = 30)
     public void test25() {
         landingPage.open()
                 .moveToMentorsHeaderOnPage();
@@ -290,24 +293,60 @@ public class LandingPageTest extends BaseTest {
         Assert.assertTrue(landingPage.becomeMentorIsDisplayed());
     }
 
-
-
-
-
-    @Test(enabled = false)
-    public void test22222_3() {
+    @Test
+    public void testWithFor() throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
         WebDriver driver = getDriver();
-        driver.get("http://exlab.team/");
-        driver.findElement(By.partialLinkText("О нас")).click();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+        landingPage.open();
+        List<WebElement> elements = driver.findElements(By.xpath("//div[@class='sc-fEOsli iema-Dv']"));
+        for (int i = 0; i < elements.size(); i++){
+            Thread.sleep(500);
+            js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
         }
-        String trans = driver.findElement(By.xpath("//div[@class='sc-bczRLJ ckyTig']")).getAttribute("style");
-        System.out.println(trans);
-        String expectedRes = "transform: matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, -1084, 0, 1); opacity: 1; pointer-events: all;";
-        Assert.assertEquals(trans, expectedRes);
+        Thread.sleep(500);
+        for (int i = 6; i > 0; i--){
+            Thread.sleep(500);
+            js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
+        }
+        WebElement header = driver.findElement(By.xpath("//div[@class='sc-fEOsli iema-Dv']/div[@id='header']"));
+        js.executeScript("arguments[0].scrollIntoView(true);", header);
+        Thread.sleep(500);
+
+        Assert.assertTrue(landingPage.startUpForHeaderIsClickable());
+        landingPage.clickStartUpForHeader();
+        Assert.assertTrue(landingPage.startUpForOnPageIsDisplayed());
+    }
+
+    @Test
+    public void testWithoutFor() throws InterruptedException {
+        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        WebDriver driver = getDriver();
+        landingPage.open();
+        List<WebElement> elements = new ArrayList<WebElement>();
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-bjUoiL gdftMO']"))); // с логотипом
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-ikZpkk fAmEjI']"))); // о нас
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-kgUAyh hgIA-Dr']"))); // проекты
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-GVOUr heJycm']"))); // менторы
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-jfmDQi jtqNlU']"))); // juniors
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-ehmTmK hNtRAb']"))); // HR
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-cZwWEu iorPTp']"))); // HELP
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-tsFYE hcwyLm']"))); // CONNECT
+        for (int i = 0; i < elements.size(); i++){
+            Thread.sleep(500);
+            js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
+        }
+        Thread.sleep(500);
+        for (int i = 7; i > 0; i--){
+            Thread.sleep(500);
+            js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
+        }
+        WebElement header = driver.findElement(By.xpath("//div[@class='sc-fEOsli iema-Dv']/div[@id='header']"));
+        js.executeScript("arguments[0].scrollIntoView(true);", header);
+        Thread.sleep(3000);
+        Assert.assertTrue(landingPage.startUpForHeaderIsClickable());
+        landingPage.clickStartUpForHeader();
+        Assert.assertTrue(landingPage.startUpForOnPageIsDisplayed());
+
     }
 
 
