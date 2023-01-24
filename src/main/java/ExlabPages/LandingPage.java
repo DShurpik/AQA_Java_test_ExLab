@@ -45,10 +45,29 @@ public class LandingPage extends BasePage {
     private final By mentorstSovrasPlus = By.xpath("(//span[@class='sc-eKBdFk cFcyNJ'])[3]");
     private final By becomeMentor = By.xpath("//a[@class='sc-dkzDqf dEddqP' and text()='Стать ментором']");
     private final By murashkoMentor = By.xpath("//p[text()='Александра Мурашко']");
+    private final By textOnStartUpForJuniors = By.xpath("//div[@class='sc-jfmDQi jtqNlU']");
+    private final By textOnStartUpForHR = By.xpath("//p[@class='sc-gFGZVQ eMPtDU']");
+    private final By searchCandidateOnPageBtn = By.xpath("//div[@class='sc-fbPSWO dEooHG']");
+    private final By helpProjectOnPage = By.xpath("//div[@class='sc-jTYCaT coDMnK']");
+    private final By textOnHelpProject = By.xpath("//div[@class='sc-fctJkW gfwicC']");
+    private final By boostyBTN = By.xpath("//a[@class='sc-dkzDqf dEddqP' and text()='Boosty']");
+    private final By patreonBTN = By.xpath("//a[@class='sc-hKMtZM etdNbW' and text()='Patreon']");
+    private final By titleOnBoosty = By.xpath("//h1[text()='ExLab']");
+    private final By stayInConnectionOnPAge = By.xpath("//div[@class='sc-bhVIhj uaVnA']");
+    private final By textInStayOnConnection = By.xpath("//div[@class='sc-eGAhfa cacMWv']");
 
 
     public LandingPage open() {
         loadPage("http://test.exlab.team/");
+        return this;
+    }
+
+    public LandingPage scrollPage() {
+        try {
+            scroll();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
@@ -72,6 +91,22 @@ public class LandingPage extends BasePage {
 
     public Boolean connectBtnInHeaderDisplayed() {
         return driver.findElement(connectBtnInHeader).isDisplayed();
+    }
+
+    public Boolean titleOnBoostyIsDisplayed() {
+        return driver.findElement(titleOnBoosty).isDisplayed();
+    }
+
+    public Boolean patreonBtnIsDisplayed() {
+        return driver.findElement(patreonBTN).isDisplayed();
+    }
+
+    public Boolean stayOnConnectionIsDisplayed() {
+        return driver.findElement(stayInConnectionOnPAge).isDisplayed();
+    }
+
+    public Boolean stayOnConnectionTextOnBlockIsDisplayed() {
+        return driver.findElement(textInStayOnConnection).isDisplayed();
     }
 
     public LandingPage moveToJoinBtnOnPage() {
@@ -365,6 +400,36 @@ public class LandingPage extends BasePage {
         return driver.findElement(startUpOnPage1).isDisplayed();
     }
 
+    public Boolean textStartUpForIsDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textOnStartUpForJuniors)));
+        return driver.findElement(textOnStartUpForJuniors).isDisplayed();
+    }
+
+    public Boolean textStartUpForHRIsDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textOnStartUpForHR)));
+        return driver.findElement(textOnStartUpForHR).isDisplayed();
+    }
+
+    public Boolean searchCandidateBtnIsDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(searchCandidateOnPageBtn)));
+        return driver.findElement(searchCandidateOnPageBtn).isDisplayed();
+    }
+
+    public Boolean helpProjectOnPageIsDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(helpProjectOnPage)));
+        return driver.findElement(helpProjectOnPage).isDisplayed();
+    }
+
+    public Boolean textOnHelpProjectOnPageIsDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textOnHelpProject)));
+        return driver.findElement(textOnHelpProject).isDisplayed();
+    }
+
+    public Boolean boostyBtnIsDisplayed() {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(boostyBTN)));
+        return driver.findElement(boostyBTN).isDisplayed();
+    }
+
     public LandingPage navigateTo() {
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
         driver.switchTo().window(tabs.get(1));
@@ -380,6 +445,71 @@ public class LandingPage extends BasePage {
     public LandingPage moveToAboutUsText() {
         moveTo(textUnderAboutUsOnPage);
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(textUnderAboutUsOnPage)));
+        return this;
+    }
+
+    public LandingPage moveToStartUpForOnPage() {
+        moveTo(startUpOnPage1);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(startUpOnPage1)));
+        return this;
+    }
+
+    public LandingPage moveToStartUpForTextJuniors() {
+        moveTo(textOnStartUpForJuniors);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textOnStartUpForJuniors)));
+        return this;
+    }
+
+    public LandingPage moveToStartUpForTextHR() {
+        moveTo(textOnStartUpForHR);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textOnStartUpForHR)));
+        return this;
+    }
+
+    public LandingPage moveToSearchCandidate() {
+        moveTo(searchCandidateOnPageBtn);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(searchCandidateOnPageBtn)));
+        return this;
+    }
+
+    public LandingPage moveToHelpProjectOnPage() {
+        moveTo(helpProjectOnPage);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(helpProjectOnPage)));
+        return this;
+    }
+
+    public LandingPage moveToTextOnHelpProjectOnPage() {
+        moveTo(textOnHelpProject);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textOnHelpProject)));
+        return this;
+    }
+
+    public LandingPage moveToBoostyBtn() {
+        moveTo(boostyBTN);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(boostyBTN)));
+        return this;
+    }
+
+    public LandingPage moveToPatreonBtn() {
+        moveTo(patreonBTN);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(patreonBTN)));
+        return this;
+    }
+
+    public LandingPage moveToStayInConnection() {
+        moveTo(stayInConnectionOnPAge);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(stayInConnectionOnPAge)));
+        return this;
+    }
+
+    public LandingPage moveToStayInConnectionBlockText() {
+        moveTo(textInStayOnConnection);
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(textInStayOnConnection)));
+        return this;
+    }
+
+    public LandingPage clickOnBoostyBtn() {
+        click(boostyBTN);
         return this;
     }
 

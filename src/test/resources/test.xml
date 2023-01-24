@@ -3,7 +3,16 @@
 
 <suite name="test">
 
+
+
     <test name="test">
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <include name="regress1"/>
+            </run>
+        </groups>
+
         <classes>
             <class name="LandingPageTest"/>
         </classes>

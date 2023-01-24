@@ -3,7 +3,6 @@ import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static Driver.SimpleDriver.*;
@@ -81,9 +80,9 @@ public class LandingPageTest extends BaseTest {
         Assert.assertTrue(landingPage.mentorsHeaderIsDisplayed());
     }
 
-    @Test(description = "Menu item Mentors is displayed", invocationCount = 30)
+    @Test(description = "Menu item Mentors is displayed")
     public void test9() {
-        landingPage.open();
+        landingPage.open().scrollPage();
         Assert.assertTrue(landingPage.mentorsHeaderIsClickable());
         landingPage.clickMentorsHeader();
         Assert.assertTrue(landingPage.mentorsOnPageIsDisplayed());
@@ -95,9 +94,9 @@ public class LandingPageTest extends BaseTest {
         Assert.assertTrue(landingPage.startUpForHeaderIsDisplayed());
     }
 
-    @Test(description = "Menu item StartUp opens Start up module", invocationCount = 10)
+    @Test(description = "Menu item StartUp opens Start up module")
     public void test11() {
-        landingPage.open();
+        landingPage.open().scrollPage();
         Assert.assertTrue(landingPage.startUpForHeaderIsClickable());
         landingPage.clickStartUpForHeader();
         Assert.assertTrue(landingPage.startUpForOnPageIsDisplayed());
@@ -239,9 +238,10 @@ public class LandingPageTest extends BaseTest {
         Assert.assertTrue(landingPage.easyhelpTextOnProjectIsDisplayed());
     }
 
-    @Test(description = "Mentors header is displayed", invocationCount = 30)
+    @Test(description = "Mentors header is displayed")
     public void test25() {
         landingPage.open()
+                .scrollPage()
                 .moveToMentorsHeaderOnPage();
         Assert.assertTrue(landingPage.mentorsHeaderOnPageIsDisplayed());
     }
@@ -293,7 +293,101 @@ public class LandingPageTest extends BaseTest {
         Assert.assertTrue(landingPage.becomeMentorIsDisplayed());
     }
 
-    @Test
+    @Test(description = "Отображение надписи StartUp для ")
+    public void test31() {
+        landingPage.open()
+                .scrollPage()
+                .moveToStartUpForOnPage();
+        Assert.assertTrue(landingPage.startUpForOnPageIsDisplayed());
+
+
+    }
+
+    @Test(description = "Отображение текста в блоке Juniors")
+    public void test32_1() {
+        landingPage.open()
+                .scrollPage()
+                .moveToStartUpForTextJuniors();
+        Assert.assertTrue(landingPage.textStartUpForIsDisplayed());
+    }
+
+    @Test(description = "Отображение текста в блоке рекрутеров")
+    public void test32_2() {
+        landingPage.open()
+                .scrollPage()
+                .moveToStartUpForTextHR();
+        Assert.assertTrue(landingPage.textStartUpForHRIsDisplayed());
+    }
+
+    @Test(description = "Отображение кнопки [Найти специалиста]")
+    public void test33() {
+        landingPage.open()
+                .scrollPage()
+                .moveToSearchCandidate();
+        Assert.assertTrue(landingPage.searchCandidateBtnIsDisplayed());
+    }
+
+    @Test(description = "Отображение надписи Помочь проекту")
+    public void test34() {
+        landingPage.open()
+                .scrollPage()
+                .moveToHelpProjectOnPage();
+        Assert.assertTrue(landingPage.helpProjectOnPageIsDisplayed());
+    }
+
+    @Test(description = "Отображение текста в блоке ")
+    public void test35() {
+        landingPage.open()
+                .scrollPage()
+                .moveToTextOnHelpProjectOnPage();
+        Assert.assertTrue(landingPage.textOnHelpProjectOnPageIsDisplayed());
+    }
+
+    @Test(description = "Отображение кнопки [Boosty]")
+    public void test36() {
+        landingPage.open()
+                .scrollPage()
+                .moveToBoostyBtn();
+        Assert.assertTrue(landingPage.boostyBtnIsDisplayed());
+    }
+
+    @Test(description = "-При нажатии на кнопку  [Boosty] открывается страница ExLab на сайте Boosty")
+    public void test37() {
+        landingPage.open()
+                .scrollPage()
+                .moveToBoostyBtn()
+                .clickOnBoostyBtn()
+                .navigateTo();
+        Assert.assertTrue(landingPage.titleOnBoostyIsDisplayed());
+    }
+
+    @Test(description = "Отображение кнопки [Patreon]")
+    public void test38() {
+        landingPage.open()
+                .scrollPage()
+                .moveToPatreonBtn();
+        Assert.assertTrue(landingPage.patreonBtnIsDisplayed());
+    }
+
+    @Test(description = "Отображение надписи Оставайся на связи")
+    public void test39() {
+        landingPage.open()
+                .scrollPage()
+                .moveToStayInConnection();
+        Assert.assertTrue(landingPage.stayOnConnectionIsDisplayed());
+    }
+
+    @Test(description = "Отображение текста в блоке ")
+    public void test40() {
+        landingPage.open()
+                .scrollPage()
+                .moveToStayInConnectionBlockText();
+        Assert.assertTrue(landingPage.stayOnConnectionTextOnBlockIsDisplayed());
+    }
+
+
+
+    @Test(enabled = false)
     public void testWithFor() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         WebDriver driver = getDriver();
@@ -316,38 +410,5 @@ public class LandingPageTest extends BaseTest {
         landingPage.clickStartUpForHeader();
         Assert.assertTrue(landingPage.startUpForOnPageIsDisplayed());
     }
-
-    @Test
-    public void testWithoutFor() throws InterruptedException {
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        WebDriver driver = getDriver();
-        landingPage.open();
-        List<WebElement> elements = new ArrayList<WebElement>();
-        elements.add(driver.findElement(By.xpath("//div[@class='sc-bjUoiL gdftMO']"))); // с логотипом
-        elements.add(driver.findElement(By.xpath("//div[@class='sc-ikZpkk fAmEjI']"))); // о нас
-        elements.add(driver.findElement(By.xpath("//div[@class='sc-kgUAyh hgIA-Dr']"))); // проекты
-        elements.add(driver.findElement(By.xpath("//div[@class='sc-GVOUr heJycm']"))); // менторы
-        elements.add(driver.findElement(By.xpath("//div[@class='sc-jfmDQi jtqNlU']"))); // juniors
-        elements.add(driver.findElement(By.xpath("//div[@class='sc-ehmTmK hNtRAb']"))); // HR
-        elements.add(driver.findElement(By.xpath("//div[@class='sc-cZwWEu iorPTp']"))); // HELP
-        elements.add(driver.findElement(By.xpath("//div[@class='sc-tsFYE hcwyLm']"))); // CONNECT
-        for (int i = 0; i < elements.size(); i++){
-            Thread.sleep(500);
-            js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
-        }
-        Thread.sleep(500);
-        for (int i = 7; i > 0; i--){
-            Thread.sleep(500);
-            js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
-        }
-        WebElement header = driver.findElement(By.xpath("//div[@class='sc-fEOsli iema-Dv']/div[@id='header']"));
-        js.executeScript("arguments[0].scrollIntoView(true);", header);
-        Thread.sleep(3000);
-        Assert.assertTrue(landingPage.startUpForHeaderIsClickable());
-        landingPage.clickStartUpForHeader();
-        Assert.assertTrue(landingPage.startUpForOnPageIsDisplayed());
-
-    }
-
 
 }
