@@ -3,7 +3,6 @@ package ExlabPages;
 import BasePage.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
 
 import java.util.*;
 

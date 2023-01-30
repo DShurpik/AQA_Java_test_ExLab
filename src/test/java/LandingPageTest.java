@@ -277,6 +277,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Mentors info is closed by clicking -")
     public void test29() {
         landingPage.open()
+                .scrollPage()
                 .moveToMentorsHeaderOnPage();
         Assert.assertTrue(landingPage.mentorsHeaderOnPageIsDisplayed());
         landingPage
@@ -387,7 +388,7 @@ public class LandingPageTest extends BaseTest {
 
 
 
-    @Test(enabled = false)
+    //@Test(enabled = false)
     public void testWithFor() throws InterruptedException {
         JavascriptExecutor js = (JavascriptExecutor) getDriver();
         WebDriver driver = getDriver();
