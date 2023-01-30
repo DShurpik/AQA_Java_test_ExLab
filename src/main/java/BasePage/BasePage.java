@@ -45,7 +45,7 @@ public abstract class BasePage {
         actions.scrollToElement(driver.findElement(locator)).build().perform();
     }
 
-    protected void scroll() throws InterruptedException {
+    protected void scrollAll() throws InterruptedException {
         List<WebElement> elements = new ArrayList<WebElement>();
         elements.add(driver.findElement(By.xpath("//div[@class='sc-bjUoiL gdftMO']"))); // с логотипом
         elements.add(driver.findElement(By.xpath("//div[@class='sc-ikZpkk fAmEjI']"))); // о нас
@@ -67,6 +67,23 @@ public abstract class BasePage {
         WebElement header = driver.findElement(By.xpath("//div[@class='sc-fEOsli iema-Dv']/div[@id='header']"));
         js.executeScript("arguments[0].scrollIntoView(true);", header);
         Thread.sleep(500);
+    }
+
+    protected void scrollHalfPast() throws InterruptedException {
+        List<WebElement> elements = new ArrayList<WebElement>();
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-bjUoiL gdftMO']"))); // с логотипом
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-ikZpkk fAmEjI']"))); // о нас
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-kgUAyh hgIA-Dr']"))); // проекты
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-GVOUr heJycm']"))); // менторы
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-jfmDQi jtqNlU']"))); // juniors
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-ehmTmK hNtRAb']"))); // HR
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-cZwWEu iorPTp']"))); // HELP
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-tsFYE hcwyLm']"))); // CONNECT
+        elements.add(driver.findElement(By.xpath("//div[@class='sc-dFdIVH ldcXdt']")));
+        for (int i = 0; i < elements.size(); i++){
+            Thread.sleep(500);
+            js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
+        }
     }
 
 }

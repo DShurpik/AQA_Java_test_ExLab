@@ -3,6 +3,7 @@ package ExlabPages;
 import BasePage.BasePage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.annotations.DataProvider;
 
 import java.util.*;
 
@@ -56,14 +57,72 @@ public class LandingPage extends BasePage {
     private final By textInStayOnConnection = By.xpath("//div[@class='sc-eGAhfa cacMWv']");
 
 
+    /**
+     * FOOTER
+     */
+    private static final By logoOnFooter = By.xpath("//div[@class='sc-fIavCj fEzmxG']");
+    private static final By textUnderLogoFooter = By.xpath("//div[@class='sc-gITdmR hYaavu']");
+    private static final By linkedInOnFooter = By.xpath("//a[text()='lnkdn']");
+    private static final By instagramOnFooter = By.xpath("//a[text()='instgrm']");
+    private static final By telegramOnFooter = By.xpath("//a[text()='tlgrm']");
+    private static final By youtubeOnFooter = By.xpath("//a[text()='ytb']");
+    private static final By infoOnFooter = By.xpath("//a[text()='info@exlab.team']");
+
+    /** Геттеры для статичных локаторов необходимы для заполнения дата провайдера в LandingPageDataProvider.class*/
+
+    public static By getLogoOnFooter() {
+        return logoOnFooter;
+    }
+
+    public static By getTextUnderLogoFooter() {
+        return textUnderLogoFooter;
+    }
+
+    public static By getLinkedInOnFooter() {
+        return linkedInOnFooter;
+    }
+
+    public static By getInstagramOnFooter() {
+        return instagramOnFooter;
+    }
+
+    public static By getTelegramOnFooter() {
+        return telegramOnFooter;
+    }
+
+    public static By getYoutubeOnFooter() {
+        return youtubeOnFooter;
+    }
+
+    public static By getInfoOnFooter() {
+        return infoOnFooter;
+    }
+
+
+    public Boolean elementIsDisplayed(By locator) {
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator))).isDisplayed();
+        System.out.println(locator.toString() + " is displayed!!!");
+        return driver.findElement(locator).isDisplayed();
+    }
+
+
     public LandingPage open() {
         loadPage("http://test.exlab.team/");
         return this;
     }
 
-    public LandingPage scrollPage() {
+    public LandingPage scrollAllPage() {
         try {
-            scroll();
+            scrollAll();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return this;
+    }
+
+    public LandingPage scrollHalfPastPage() {
+        try {
+            scrollHalfPast();
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -286,6 +345,7 @@ public class LandingPage extends BasePage {
         List<WebElement> list = driver.findElements(nameMentors);
         return list.size();
     }
+
     public LandingPage closeMentorsInfoUdaev() {
         click(mentorsUdaevMinus);
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(mentorsUdaevFoto)));
@@ -511,7 +571,18 @@ public class LandingPage extends BasePage {
         click(boostyBTN);
         return this;
     }
+    @DataProvider(name = "Locators_for_test1")
+    public static Object[][] getData() {
+        return new Object[][]{
+                {logoOnFooter},
+                {textUnderLogoFooter},
+                {linkedInOnFooter},
+                {instagramOnFooter},
+                {telegramOnFooter},
+                {youtubeOnFooter},
+                {infoOnFooter}
+        };
 
 
-
+    }
 }

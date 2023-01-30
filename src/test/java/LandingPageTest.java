@@ -1,11 +1,13 @@
 import BasePage.BaseTest;
 import org.openqa.selenium.*;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 import static Driver.SimpleDriver.*;
+import static ExlabPages.LandingPage.*;
 
 
 public class LandingPageTest extends BaseTest {
@@ -82,7 +84,7 @@ public class LandingPageTest extends BaseTest {
 
     @Test(description = "Menu item Mentors is displayed")
     public void test9() {
-        landingPage.open().scrollPage();
+        landingPage.open().scrollAllPage();
         Assert.assertTrue(landingPage.mentorsHeaderIsClickable());
         landingPage.clickMentorsHeader();
         Assert.assertTrue(landingPage.mentorsOnPageIsDisplayed());
@@ -96,7 +98,7 @@ public class LandingPageTest extends BaseTest {
 
     @Test(description = "Menu item StartUp opens Start up module")
     public void test11() {
-        landingPage.open().scrollPage();
+        landingPage.open().scrollAllPage();
         Assert.assertTrue(landingPage.startUpForHeaderIsClickable());
         landingPage.clickStartUpForHeader();
         Assert.assertTrue(landingPage.startUpForOnPageIsDisplayed());
@@ -241,7 +243,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Mentors header is displayed")
     public void test25() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToMentorsHeaderOnPage();
         Assert.assertTrue(landingPage.mentorsHeaderOnPageIsDisplayed());
     }
@@ -277,7 +279,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Mentors info is closed by clicking -")
     public void test29() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToMentorsHeaderOnPage();
         Assert.assertTrue(landingPage.mentorsHeaderOnPageIsDisplayed());
         landingPage
@@ -297,7 +299,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Отображение надписи StartUp для ")
     public void test31() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToStartUpForOnPage();
         Assert.assertTrue(landingPage.startUpForOnPageIsDisplayed());
 
@@ -307,7 +309,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Отображение текста в блоке Juniors")
     public void test32_1() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToStartUpForTextJuniors();
         Assert.assertTrue(landingPage.textStartUpForIsDisplayed());
     }
@@ -315,7 +317,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Отображение текста в блоке рекрутеров")
     public void test32_2() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToStartUpForTextHR();
         Assert.assertTrue(landingPage.textStartUpForHRIsDisplayed());
     }
@@ -323,7 +325,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Отображение кнопки [Найти специалиста]")
     public void test33() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToSearchCandidate();
         Assert.assertTrue(landingPage.searchCandidateBtnIsDisplayed());
     }
@@ -331,7 +333,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Отображение надписи Помочь проекту")
     public void test34() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToHelpProjectOnPage();
         Assert.assertTrue(landingPage.helpProjectOnPageIsDisplayed());
     }
@@ -339,7 +341,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Отображение текста в блоке ")
     public void test35() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToTextOnHelpProjectOnPage();
         Assert.assertTrue(landingPage.textOnHelpProjectOnPageIsDisplayed());
     }
@@ -347,7 +349,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Отображение кнопки [Boosty]")
     public void test36() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToBoostyBtn();
         Assert.assertTrue(landingPage.boostyBtnIsDisplayed());
     }
@@ -355,7 +357,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "-При нажатии на кнопку  [Boosty] открывается страница ExLab на сайте Boosty")
     public void test37() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToBoostyBtn()
                 .clickOnBoostyBtn()
                 .navigateTo();
@@ -365,7 +367,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Отображение кнопки [Patreon]")
     public void test38() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToPatreonBtn();
         Assert.assertTrue(landingPage.patreonBtnIsDisplayed());
     }
@@ -373,7 +375,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Отображение надписи Оставайся на связи")
     public void test39() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToStayInConnection();
         Assert.assertTrue(landingPage.stayOnConnectionIsDisplayed());
     }
@@ -381,7 +383,7 @@ public class LandingPageTest extends BaseTest {
     @Test(description = "Отображение текста в блоке ")
     public void test40() {
         landingPage.open()
-                .scrollPage()
+                .scrollAllPage()
                 .moveToStayInConnectionBlockText();
         Assert.assertTrue(landingPage.stayOnConnectionTextOnBlockIsDisplayed());
     }
