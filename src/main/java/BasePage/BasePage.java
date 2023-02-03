@@ -56,17 +56,17 @@ public abstract class BasePage {
         elements.add(driver.findElement(By.xpath("//div[@class='sc-cZwWEu iorPTp']"))); // HELP
         elements.add(driver.findElement(By.xpath("//div[@class='sc-tsFYE hcwyLm']"))); // CONNECT
         for (int i = 0; i < elements.size(); i++){
-            Thread.sleep(500);
+            Thread.sleep(100);
             js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
         }
-        Thread.sleep(500);
+        Thread.sleep(100);
         for (int i = 7; i > 0; i--){
-            Thread.sleep(500);
+            Thread.sleep(100);
             js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
         }
         WebElement header = driver.findElement(By.xpath("//div[@class='sc-fEOsli iema-Dv']/div[@id='header']"));
         js.executeScript("arguments[0].scrollIntoView(true);", header);
-        Thread.sleep(500);
+        Thread.sleep(100);
     }
 
     protected void scrollHalfPast() throws InterruptedException {
@@ -81,7 +81,7 @@ public abstract class BasePage {
         elements.add(driver.findElement(By.xpath("//div[@class='sc-tsFYE hcwyLm']"))); // CONNECT
         elements.add(driver.findElement(By.xpath("//div[@class='sc-dFdIVH ldcXdt']")));
         for (int i = 0; i < elements.size(); i++){
-            Thread.sleep(500);
+            Thread.sleep(100);
             js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
         }
     }
