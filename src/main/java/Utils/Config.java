@@ -11,4 +11,5 @@ public class Config {
     public static final Integer height = 1050;
     public static final Dimension DIMENSION = new Dimension(width, height);
     public static final Boolean ON_HEADLESS = true;
+    public static final String BROWSER = "CHROME";  /** "CHROME" , "FIREFOX" */
 }

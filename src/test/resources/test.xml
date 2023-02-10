@@ -9,6 +9,8 @@
 
         <classes>
             <class name="LandingPageTest"/>
+            <class name="LandingPageDataProvider"/>
+            <class name="LandingPageDataProvider1"/>
         </classes>
     </test>
 

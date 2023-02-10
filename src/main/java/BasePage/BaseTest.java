@@ -10,15 +10,14 @@ public abstract class BaseTest {
 
     protected LandingPage landingPage;
 
-    @BeforeMethod(groups = {"smoke", "regress1"})
+    @BeforeMethod
     public void setUp() {
         createDriver();
         landingPage = new LandingPage();
     }
 
-    @AfterMethod(groups = {"smoke", "regress1"})
+    @AfterMethod
     public void closeDriver() {
         closeWebDriver();
     }
-
 }

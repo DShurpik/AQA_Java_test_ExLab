@@ -68,6 +68,12 @@ public class LandingPage extends BasePage {
     private static final By youtubeOnFooter = By.xpath("//a[text()='ytb']");
     private static final By infoOnFooter = By.xpath("//a[text()='info@exlab.team']");
 
+    /** Locators for test 44, 46, 48, 50 */
+    private static final By linkedIn = By.xpath("//h1[text()='Присоединитесь к LinkedIn']");
+    private static final By instagram = By.xpath("//h2");
+    private static final By telegram = By.xpath("//span[text()='ExLab Channel']");
+    private static final By youtube = By.xpath("//div[*='ExLab']");
+
     /** Геттеры для статичных локаторов необходимы для заполнения дата провайдера в LandingPageDataProvider.class*/
 
     public static By getLogoOnFooter() {
@@ -98,6 +104,24 @@ public class LandingPage extends BasePage {
         return infoOnFooter;
     }
 
+    /** getters for 44, 46, 48, 50 tests */
+
+    public static By getLinkedIn() {
+        return linkedIn;
+    }
+    public static By getInstagram() {
+        return instagram;
+    }
+    public static By getTelegram() {
+        return telegram;
+    }
+    public static By getYoutube() {
+        return youtube;
+    }
+
+    public boolean isDisplayed_(By locator2) {
+        return driver.findElement(locator2).isDisplayed();
+    }
 
     public Boolean elementIsDisplayed(By locator) {
         wait.until(ExpectedConditions.visibilityOf(driver.findElement(locator))).isDisplayed();
@@ -571,6 +595,11 @@ public class LandingPage extends BasePage {
         click(boostyBTN);
         return this;
     }
+
+    public void click_(By locator) {
+        click(locator);
+    }
+
     @DataProvider(name = "Locators_for_test1")
     public static Object[][] getData() {
         return new Object[][]{

@@ -388,6 +388,44 @@ public class LandingPageTest extends BaseTest {
         Assert.assertTrue(landingPage.stayOnConnectionTextOnBlockIsDisplayed());
     }
 
+    @Test(dataProvider = "Locators")
+    public void test41_51_from_dataprovider(Integer id_test, By locator) {
+        landingPage.open()
+                .scrollHalfPastPage();
+        Assert.assertTrue(landingPage.elementIsDisplayed(locator));
+    }
+
+
+    @DataProvider(name = "Locators")
+    public Object[][] getData(){
+        return new Object[][]{
+                {41, getLogoOnFooter()},
+                {42, getTextUnderLogoFooter()},
+                {43, getLinkedInOnFooter()},
+                {45, getInstagramOnFooter()},
+                {47, getTelegramOnFooter()},
+                {49, getYoutubeOnFooter()},
+                {51, getInfoOnFooter()}
+        };
+    }
+
+    @Test(dataProvider = "For test 44-50")
+    public void test44_46_48_50(Integer id_test, By locator1, By locator2) {
+        landingPage.open().scrollHalfPastPage().click_(locator1);
+        landingPage.navigateTo();
+
+        Assert.assertTrue(landingPage.isDisplayed_(locator2));
+    }
+
+    @DataProvider(name = "For test 44-50")
+    public Object[][] getDataForTest44_40(){
+        return new Object[][]{
+                {44, getLinkedInOnFooter(), getLinkedIn()},
+                {46, getInstagramOnFooter(), getInstagram()},
+                {48, getTelegramOnFooter(), getTelegram()},
+                {50, getYoutubeOnFooter(), getYoutube()}
+        };
+    }
 
 
     //@Test(enabled = false)

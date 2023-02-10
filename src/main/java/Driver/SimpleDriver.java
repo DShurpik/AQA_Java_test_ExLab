@@ -3,6 +3,8 @@ package Driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 import java.time.Duration;
 
@@ -13,8 +15,17 @@ public class SimpleDriver {
     protected static WebDriver driver;
 
     public static void createDriver() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver(getChromeOptions());
+        driver = null;
+        switch (BROWSER) {
+            case "CHROME" :
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver(getChromeOptions());
+                break;
+            case "FIREFOX" :
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver(getFirefoxOptions());
+                break;
+        }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITLY_WAIT));
         driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(SCRIPT_TIME_OUT));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(PAGE_LOAD_TIMEOUT));
@@ -37,6 +48,14 @@ public class SimpleDriver {
         chromeOptions.addArguments("--headless");
         }
         return chromeOptions;
+    }
+
+    protected static FirefoxOptions getFirefoxOptions() {
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        if (ON_HEADLESS) {
+            firefoxOptions.addArguments("--headless");
+        }
+        return firefoxOptions;
     }
 
 }
