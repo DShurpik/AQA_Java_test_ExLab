@@ -611,7 +611,5 @@ public class LandingPage extends BasePage {
                 {youtubeOnFooter},
                 {infoOnFooter}
         };
-
-
     }
 }

@@ -426,30 +426,4 @@ public class LandingPageTest extends BaseTest {
                 {50, getYoutubeOnFooter(), getYoutube()}
         };
     }
-
-
-    //@Test(enabled = false)
-    public void testWithFor() throws InterruptedException {
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
-        WebDriver driver = getDriver();
-        landingPage.open();
-        List<WebElement> elements = driver.findElements(By.xpath("//div[@class='sc-fEOsli iema-Dv']"));
-        for (int i = 0; i < elements.size(); i++){
-            Thread.sleep(500);
-            js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
-        }
-        Thread.sleep(500);
-        for (int i = 6; i > 0; i--){
-            Thread.sleep(500);
-            js.executeScript("arguments[0].scrollIntoView(true);", elements.get(i));
-        }
-        WebElement header = driver.findElement(By.xpath("//div[@class='sc-fEOsli iema-Dv']/div[@id='header']"));
-        js.executeScript("arguments[0].scrollIntoView(true);", header);
-        Thread.sleep(500);
-
-        Assert.assertTrue(landingPage.startUpForHeaderIsClickable());
-        landingPage.clickStartUpForHeader();
-        Assert.assertTrue(landingPage.startUpForOnPageIsDisplayed());
-    }
-
 }

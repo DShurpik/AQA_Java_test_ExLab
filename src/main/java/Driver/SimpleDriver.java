@@ -39,7 +39,7 @@ public class SimpleDriver {
 
     public static void closeWebDriver() {
         driver.close();
-        driver.quit();
+        //driver.quit();
     }
 
     protected static ChromeOptions getChromeOptions() {
