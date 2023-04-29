@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="test">
-
-
-
-    <test name="test">
-
+<suite name="provider">
+    
+    <test name="Lecture 10">
         <classes>
-            <class name="LandingPageTest"/>
             <class name="LandingPageDataProvider"/>
             <class name="LandingPageDataProvider1"/>
         </classes>
     </test>
-
+    
 </suite>

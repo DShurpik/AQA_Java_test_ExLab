@@ -1,4 +1,5 @@
 import BasePage.BaseTest;
+import io.qameta.allure.*;
 import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -9,9 +10,13 @@ import java.util.List;
 import static Driver.SimpleDriver.*;
 import static ExlabPages.LandingPage.*;
 
-
 public class LandingPageTest extends BaseTest {
 
+    @TmsLink("asd")
+    @Owner("DS")
+    @Severity(SeverityLevel.MINOR)
+    @Feature("UI")
+    
     @Test(description = "Check landing available to address")
     public void test1_1() {
         landingPage.open();

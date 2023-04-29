@@ -4,9 +4,12 @@ import ExlabPages.LandingPage;
 import ExlabPages.LandingPage_ref;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 
 import static Driver.SimpleDriver.*;
+import Listeners.*;
 
+@Listeners(Screen.class)
 public abstract class BaseTest {
 
     protected LandingPage landingPage;

@@ -15,22 +15,23 @@ public class SimpleDriver {
     protected static WebDriver driver;
 
     public static void createDriver() {
-        driver = null;
-        switch (BROWSER) {
-            case "CHROME" :
-                WebDriverManager.chromedriver().setup();
-                driver = new ChromeDriver(getChromeOptions());
-                break;
-            case "FIREFOX" :
-                WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver(getFirefoxOptions());
-                break;
+        if (driver == null) {
+            switch (BROWSER) {
+                case "CHROME":
+                    WebDriverManager.chromedriver().setup();
+                    driver = new ChromeDriver(getChromeOptions());
+                    break;
+                case "FIREFOX":
+                    WebDriverManager.firefoxdriver().setup();
+                    driver = new FirefoxDriver(getFirefoxOptions());
+                    break;
+            }
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITLY_WAIT));
+            driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(SCRIPT_TIME_OUT));
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(PAGE_LOAD_TIMEOUT));
+            driver.manage().window().setSize(DIMENSION);
+            driver.manage().deleteAllCookies();
         }
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(IMPLICITLY_WAIT));
-        driver.manage().timeouts().scriptTimeout(Duration.ofSeconds(SCRIPT_TIME_OUT));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(PAGE_LOAD_TIMEOUT));
-        driver.manage().window().setSize(DIMENSION);
-        driver.manage().deleteAllCookies();
     }
 
     public static WebDriver getDriver() {
@@ -38,8 +39,10 @@ public class SimpleDriver {
     }
 
     public static void closeWebDriver() {
-        driver.close();
-        //driver.quit();
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 
     protected static ChromeOptions getChromeOptions() {

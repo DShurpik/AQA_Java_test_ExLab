@@ -1,15 +1,9 @@
 import BasePage.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
-import static Driver.SimpleDriver.getDriver;
 import static ExlabPages.LandingPage_ref.*;
 
 public class LandingPageTest_ref extends BaseTest {
@@ -81,43 +75,6 @@ public class LandingPageTest_ref extends BaseTest {
                 {38, getPatreonBTN()},
                 {39, getStayInConnectionOnPAge()},
                 {40, getTextInStayOnConnection()}
-        };
-    }
-
-    @Test(dataProvider = "Locators")
-    public void test41_51_from_dataprovider(Integer id_test, By locator) {
-        landingPage.open()
-                .scrollHalfPastPage();
-        Assert.assertTrue(landingPage.elementIsDisplayed(locator));
-    }
-
-    @DataProvider(name = "Locators")
-    public Object[][] getData(){
-        return new Object[][]{
-                {41, },
-                {42, },
-                {43, },
-                {45, },
-                {47, },
-                {49, },
-                {51, }
-        };
-    }
-
-    @Test(dataProvider = "For test 44-50")
-    public void test44_46_48_50(Integer id_test, By locator1, By locator2) {
-        landingPage.open().scrollHalfPastPage().click_(locator1);
-        landingPage.navigateTo();
-        Assert.assertTrue(landingPage.isDisplayed_(locator2));
-    }
-
-    @DataProvider(name = "For test 44-50")
-    public Object[][] getDataForTest44_40(){
-        return new Object[][]{
-                {44, },
-                {46, },
-                {48, },
-                {50, }
         };
     }
 }
