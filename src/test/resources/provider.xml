@@ -3,10 +3,9 @@
 
 <suite name="provider">
     
-    <test name="Lecture 10">
+    <test name="Tests with dataProvider">
         <classes>
             <class name="LandingPageDataProvider"/>
-            <class name="LandingPageDataProvider1"/>
         </classes>
     </test>
     
